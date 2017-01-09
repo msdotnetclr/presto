@@ -21,6 +21,7 @@ public class InternalCommunicationConfig
     private boolean httpsRequired;
     private String keyStorePath;
     private String keyStorePassword;
+    private boolean kerberosEnabled;
 
     public boolean isHttpsRequired()
     {
@@ -56,6 +57,18 @@ public class InternalCommunicationConfig
     public InternalCommunicationConfig setKeyStorePassword(String keyStorePassword)
     {
         this.keyStorePassword = keyStorePassword;
+        return this;
+    }
+
+    public boolean isKerberosEnabled()
+    {
+        return kerberosEnabled;
+    }
+
+    @Config("internal-communication.authentication.kerberos.enabled")
+    public InternalCommunicationConfig setKerberosEnabled(boolean kerberosEnabled)
+    {
+        this.kerberosEnabled = kerberosEnabled;
         return this;
     }
 }
