@@ -252,31 +252,31 @@ public class OperatorContext
     // caller should close this context as it's a new context
     public LocalMemoryContext newLocalSystemMemoryContext()
     {
-        return new InternalLocalMemoryContext(operatorMemoryContext.newSystemMemoryContext(), memoryFuture);
+        return new InternalLocalMemoryContext(operatorMemoryContext.newSystemMemoryContext(), memoryFuture, true);
     }
 
     // caller shouldn't close this context as it's managed by the OperatorContext
     public LocalMemoryContext localUserMemoryContext()
     {
-        return new InternalLocalMemoryContext(operatorMemoryContext.localUserMemoryContext(), memoryFuture);
+        return new InternalLocalMemoryContext(operatorMemoryContext.localUserMemoryContext(), memoryFuture, false);
     }
 
     // caller shouldn't close this context as it's managed by the OperatorContext
     public LocalMemoryContext localRevocableMemoryContext()
     {
-        return new InternalLocalMemoryContext(operatorMemoryContext.localRevocableMemoryContext(), revocableMemoryFuture);
+        return new InternalLocalMemoryContext(operatorMemoryContext.localRevocableMemoryContext(), revocableMemoryFuture, false);
     }
 
     // caller shouldn't close this context as it's managed by the OperatorContext
     public AggregatedMemoryContext aggregateUserMemoryContext()
     {
-        return new InternalAggregatedMemoryContext(operatorMemoryContext.aggregateUserMemoryContext(), memoryFuture);
+        return new InternalAggregatedMemoryContext(operatorMemoryContext.aggregateUserMemoryContext(), memoryFuture, false);
     }
 
     // caller should close this context as it's a new context
     public AggregatedMemoryContext newAggregateSystemMemoryContext()
     {
-        return new InternalAggregatedMemoryContext(operatorMemoryContext.newAggregateSystemMemoryContext(), memoryFuture);
+        return new InternalAggregatedMemoryContext(operatorMemoryContext.newAggregateSystemMemoryContext(), memoryFuture, true);
     }
 
     public long getReservedRevocableBytes()
@@ -579,11 +579,13 @@ public class OperatorContext
     {
         private final LocalMemoryContext delegate;
         private final AtomicReference<SettableFuture<?>> memoryFuture;
+        private final boolean closable;
 
-        InternalLocalMemoryContext(LocalMemoryContext delegate, AtomicReference<SettableFuture<?>> memoryFuture)
+        InternalLocalMemoryContext(LocalMemoryContext delegate, AtomicReference<SettableFuture<?>> memoryFuture, boolean closable)
         {
             this.delegate = requireNonNull(delegate, "delegate is null");
             this.memoryFuture = requireNonNull(memoryFuture, "memoryFuture is null");
+            this.closable = closable;
         }
 
         @Override
@@ -609,6 +611,9 @@ public class OperatorContext
         @Override
         public void close()
         {
+            if (!closable) {
+                throw new IllegalStateException("Called close on unclosable local memory context");
+            }
             delegate.close();
         }
     }
@@ -618,11 +623,13 @@ public class OperatorContext
     {
         private final AggregatedMemoryContext delegate;
         private final AtomicReference<SettableFuture<?>> memoryFuture;
+        private final boolean closable;
 
-        InternalAggregatedMemoryContext(AggregatedMemoryContext delegate, AtomicReference<SettableFuture<?>> memoryFuture)
+        InternalAggregatedMemoryContext(AggregatedMemoryContext delegate, AtomicReference<SettableFuture<?>> memoryFuture, boolean closable)
         {
             this.delegate = requireNonNull(delegate, "delegate is null");
             this.memoryFuture = requireNonNull(memoryFuture, "memoryFuture is null");
+            this.closable = closable;
         }
 
         @Override
@@ -634,7 +641,7 @@ public class OperatorContext
         @Override
         public LocalMemoryContext newLocalMemoryContext()
         {
-            return new InternalLocalMemoryContext(delegate.newLocalMemoryContext(), memoryFuture);
+            return new InternalLocalMemoryContext(delegate.newLocalMemoryContext(), memoryFuture, true);
         }
 
         @Override
@@ -646,6 +653,9 @@ public class OperatorContext
         @Override
         public void close()
         {
+            if (!closable) {
+                throw new IllegalStateException("Called close on unclosable aggregated memory context");
+            }
             delegate.close();
         }
     }
