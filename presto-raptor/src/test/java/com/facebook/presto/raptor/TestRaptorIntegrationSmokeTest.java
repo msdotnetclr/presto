@@ -242,7 +242,7 @@ public class TestRaptorIntegrationSmokeTest
 
         assertUpdate(joiner.toString(), format("VALUES(%s)", rows));
 
-        MaterializedResult results = computeActual("SELECT format_datetime(col2, 'yyyyMMdd'), \"$shard_uuid\" FROM test_shard_temporal_timestamp");
+        MaterializedResult results = computeActual("SELECT format_datetime(col2 AT TIME ZONE 'UTC', 'yyyyMMdd'), \"$shard_uuid\" FROM test_shard_temporal_timestamp");
         assertEquals(results.getRowCount(), rows);
 
         // Each shard will only contain data of one date.
@@ -278,7 +278,7 @@ public class TestRaptorIntegrationSmokeTest
         assertUpdate(joiner.toString(), format("VALUES(%s)", rows));
 
         MaterializedResult results = computeActual("" +
-                "SELECT format_datetime(col2, 'yyyyMMdd'), \"$shard_uuid\" " +
+                "SELECT format_datetime(col2 AT TIME ZONE 'UTC', 'yyyyMMdd'), \"$shard_uuid\" " +
                 "FROM test_shard_temporal_timestamp_bucketed");
 
         assertEquals(results.getRowCount(), rows);

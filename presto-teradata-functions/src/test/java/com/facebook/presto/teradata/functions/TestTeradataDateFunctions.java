@@ -35,11 +35,9 @@ import static java.lang.Math.toIntExact;
 public class TestTeradataDateFunctions
         extends AbstractTestFunctions
 {
-    private static final TimeZoneKey TIME_ZONE_KEY = getTimeZoneKey("Asia/Kathmandu");
     private static final Session SESSION = testSessionBuilder()
             .setCatalog("catalog")
             .setSchema("schema")
-            .setTimeZoneKey(TIME_ZONE_KEY)
             .build();
 
     protected TestTeradataDateFunctions()
