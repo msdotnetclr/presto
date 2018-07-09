@@ -10,7 +10,7 @@
 
     <groupId>com.facebook.presto</groupId>
     <artifactId>presto-root</artifactId>
-    <version>0.195-e.0.6</version>
+    <version>0.195-e.0.8</version>
     <packaging>pom</packaging>
 
     <name>presto-root</name>
@@ -108,8 +108,8 @@
         <module>presto-cli</module>
         <module>presto-benchmark-driver</module>
         <module>presto-server</module>
-        <module>presto-server-rpm</module>
-        <module>presto-docs</module>
+        <!-- <module>presto-server-rpm</module> -->
+        <!-- <module>presto-docs</module> -->
         <module>presto-verifier</module>
         <module>presto-testing-server-launcher</module>
         <module>presto-plugin-toolkit</module>
