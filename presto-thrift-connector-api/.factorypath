@@ -1,0 +1,5 @@
+<factorypath>
+    <factorypathentry kind="VARJAR" id="M2_REPO/io/airlift/drift/drift-javadoc/1.12/drift-javadoc-1.12.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/io/airlift/drift/drift-api/1.12/drift-api-1.12.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/com/squareup/javapoet/1.9.0/javapoet-1.9.0.jar" enabled="true" runInBatchMode="false"/>
+</factorypath>

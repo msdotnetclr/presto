@@ -10,7 +10,7 @@
 
     <groupId>com.facebook.presto</groupId>
     <artifactId>presto-root</artifactId>
-    <version>0.203</version>
+    <version>0.203-e.0.2</version>
     <packaging>pom</packaging>
 
     <name>presto-root</name>
@@ -65,15 +65,15 @@
     </properties>
 
     <modules>
-        <module>presto-atop</module>
+        <!-- <module>presto-atop</module> -->
         <module>presto-spi</module>
         <module>presto-array</module>
         <module>presto-jmx</module>
         <module>presto-record-decoder</module>
-        <module>presto-kafka</module>
-        <module>presto-redis</module>
-        <module>presto-accumulo</module>
-        <module>presto-cassandra</module>
+        <!-- <module>presto-kafka</module> -->
+        <!-- <module>presto-redis</module> -->
+        <!-- <module>presto-accumulo</module> -->
+        <!-- <module>presto-cassandra</module> -->
         <module>presto-blackhole</module>
         <module>presto-memory</module>
         <module>presto-orc</module>
@@ -85,13 +85,13 @@
         <module>presto-local-file</module>
         <module>presto-tpch</module>
         <module>presto-tpcds</module>
-        <module>presto-raptor</module>
+        <!-- <module>presto-raptor</module> -->
         <module>presto-base-jdbc</module>
-        <module>presto-mysql</module>
-        <module>presto-postgresql</module>
-        <module>presto-redshift</module>
-        <module>presto-sqlserver</module>
-        <module>presto-mongodb</module>
+        <!-- <module>presto-mysql</module> -->
+        <!-- <module>presto-postgresql</module> -->
+        <!-- <module>presto-redshift</module> -->
+        <!-- <module>presto-sqlserver</module> -->
+        <!-- <module>presto-mongodb</module> -->
         <module>presto-client</module>
         <module>presto-parser</module>
         <module>presto-main</module>
@@ -100,22 +100,22 @@
         <module>presto-geospatial-toolkit</module>
         <module>presto-benchmark</module>
         <module>presto-tests</module>
-        <module>presto-product-tests</module>
+        <!-- <module>presto-product-tests</module> -->
         <module>presto-jdbc</module>
         <module>presto-cli</module>
-        <module>presto-benchmark-driver</module>
-        <module>presto-server</module>
-        <module>presto-server-rpm</module>
-        <module>presto-docs</module>
-        <module>presto-verifier</module>
-        <module>presto-testing-server-launcher</module>
+        <!-- <module>presto-benchmark-driver</module> -->
+        <!-- <module>presto-server</module> -->
+        <!-- <module>presto-server-rpm</module> -->
+        <!-- <module>presto-docs</module> -->
+        <!-- <module>presto-verifier</module> -->
+        <!-- <module>presto-testing-server-launcher</module> -->
         <module>presto-plugin-toolkit</module>
         <module>presto-resource-group-managers</module>
         <module>presto-password-authenticators</module>
-        <module>presto-benchto-benchmarks</module>
+        <!-- <module>presto-benchto-benchmarks</module> -->
         <module>presto-thrift-connector-api</module>
-        <module>presto-thrift-testing-server</module>
-        <module>presto-thrift-connector</module>
+        <!-- <module>presto-thrift-testing-server</module> -->
+        <!-- <module>presto-thrift-connector</module> -->
         <module>presto-matching</module>
         <module>presto-memory-context</module>
     </modules>
