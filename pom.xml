@@ -10,7 +10,7 @@
 
     <groupId>com.facebook.presto</groupId>
     <artifactId>presto-root</artifactId>
-    <version>0.203-e.0.2</version>
+    <version>0.195-e.0.8</version>
     <packaging>pom</packaging>
 
     <name>presto-root</name>
@@ -119,6 +119,7 @@
         <module>presto-matching</module>
         <module>presto-memory-context</module>
         <module>presto-jtds</module>
+        <module>presto.event-listener.system-out</module>
     </modules>
 
     <dependencyManagement>
